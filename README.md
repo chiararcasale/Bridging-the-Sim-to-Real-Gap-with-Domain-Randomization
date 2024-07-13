@@ -1,5 +1,5 @@
 # Bridging the Sim to Real Gap with Domain Randomization
-This repository contains the code for the Reinforcement Learning project in the MLDL course at PoliTO.
+This repository contains the code for the Reinforcement Learning project in the MLDL course at PoliTO. \
 Students: Yegane Bagheri and Chiara Roberta Casale.
 
 ## REINFORCE
