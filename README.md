@@ -3,7 +3,7 @@ This repository contains the code for the Reinforcement Learning project in the 
 Students: Yegane Bagheri and Chiara Roberta Casale.
 
 ## REINFORCE
-- [agent_reinforce.py](./agent_reinforce.py) Agent for REINFORCE without a baseline and REINFORCE with baseline = 20
+- 'agent_reinforce.py' Agent for REINFORCE without a baseline and REINFORCE with baseline = 20
 - task2_3_train.py to train the agent
 - task2_3_test.py to test the agent
 
