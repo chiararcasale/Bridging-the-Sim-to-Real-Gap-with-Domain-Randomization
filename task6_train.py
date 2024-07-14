@@ -31,8 +31,7 @@ from env_udr.custom_hopper import *
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--n-episodes', default=1000000, type=int, help='Number of training episodes')
-    #parser.add_argument('--eval-freq', default=20000, type=int, help='Evaluation frequence')
-    parser.add_argument('--eval-freq', default=500000, type=int, help='Evaluation frequence')
+    parser.add_argument('--eval-freq', default=20000, type=int, help='Evaluation frequence')
     parser.add_argument('--n-eval-episodes', default=50, type=int, help='Number of evaluation episodes')
     parser.add_argument('--env-train', default='CustomHopper-source-udr-v0', type=str, help='Source environment')
     parser.add_argument('--env-eval-source', default='CustomHopper-source-v0', type=str, help='Target environment')
