@@ -31,10 +31,12 @@ from env_udr.custom_hopper import *
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--n-episodes', default=1000000, type=int, help='Number of training episodes')
-    parser.add_argument('--eval-freq', default=20000, type=int, help='Evaluation frequence')
+    #parser.add_argument('--eval-freq', default=20000, type=int, help='Evaluation frequence')
+    parser.add_argument('--eval-freq', default=500000, type=int, help='Evaluation frequence')
     parser.add_argument('--n-eval-episodes', default=50, type=int, help='Number of evaluation episodes')
     parser.add_argument('--env-train', default='CustomHopper-source-udr-v0', type=str, help='Source environment')
-    parser.add_argument('--env-eval', default='CustomHopper-target-v0', type=str, help='Target environment')
+    parser.add_argument('--env-eval-source', default='CustomHopper-source-v0', type=str, help='Target environment')
+    parser.add_argument('--env-eval-target', default='CustomHopper-target-v0', type=str, help='Target environment')
     parser.add_argument('--policy', default='MlpPolicy', type=str, help='Policy')
     parser.add_argument('--batch_size', default=64, type=int, help='Batch Size')
     parser.add_argument('--lr', default=0.0003, type=float, help='Learning Rate')
@@ -56,7 +58,8 @@ N_EVAL_EPISODES = args.n_eval_episodes
 EVAL_FREQ = args.eval_freq
 
 ENV_ID_TRAIN = args.env_train
-ENV_ID_EVAL = args.env_eval
+ENV_ID_EVAL_SOURCE = args.env_eval_source
+ENV_ID_EVAL_TARGET = args.env_eval_target
 
 SEED = args.seed
 os.environ['PYTHONASHSEED'] = str(SEED)
@@ -106,7 +109,8 @@ if __name__ == "__main__":
     if DEBUG:
         train_env.set_debug()
 
-    eval_env = Monitor(gym.make(ENV_ID_EVAL))
+    eval_env = Monitor(gym.make(ENV_ID_EVAL_TARGET))
+    eval_env_source = Monitor(gym.make(ENV_ID_EVAL_SOURCE))
 
     model = PPO(**kwargs, env = train_env)
 
@@ -117,4 +121,7 @@ if __name__ == "__main__":
     model.learn(N_TIMESTEPS, callback=eval_callback)
 
     mean, std = evaluate_policy(model, eval_env, N_EVAL_EPISODES)
-    print(f'Mean reward={mean}, std={std}')
+    print(f'Source→Target. Mean reward={mean}, std={std}')
+
+    mean, std = evaluate_policy(model, eval_env_source, N_EVAL_EPISODES)
+    print(f'Source→Source. Mean reward={mean}, std={std}')
