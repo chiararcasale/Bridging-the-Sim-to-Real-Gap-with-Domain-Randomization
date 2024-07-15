@@ -20,9 +20,9 @@ Students: Yegane Bagheri and Chiara Roberta Casale.
 ## Uniform Domain Randomization
 - `env_udr` environment with functions to make UDR work
 - `task6_tuning.py` to tune the parameters for UDR
-- `task6_train.py` to train and test UDR in Target -> Target
+- `task6_train.py` to train and test UDR in Source -> Target (and Source -> Source)
 
 ## Automatic Domain Randomization
 - `env_autodr` environment with functions to make AutoDR work
 - `adr.py` functions to define AutoDR
-- `adr_train.py` to train and test AutoDR in Target -> Target
+- `adr_train.py` to train and test AutoDR in Source -> Target
