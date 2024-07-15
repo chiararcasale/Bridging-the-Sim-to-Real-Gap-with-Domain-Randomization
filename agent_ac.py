@@ -100,12 +100,17 @@ class Agent(object): #The Agent class is designed to interact with the environme
         state_values = state_values.squeeze(-1)
         next_state_values = next_state_values.squeeze(-1)
 
-        returns = discount_rewards(rewards, self.gamma)
+        #bootstrapped returns
+        returns = rewards + self.gamma * next_state_values * (1.0 - done)
 
+        # Compute advantages
         advantages = returns - state_values
 
-        actor_loss = -torch.mul(advantages, action_log_probs).mean()
-        critic_loss = F.mse_loss(state_values, returns)
+        # Actor loss
+        actor_loss = (-action_log_probs * advantages.detach()).mean()
+
+        # Critic loss
+        critic_loss = F.mse_loss(state_values, returns.detach())
 
         self.optimizer.zero_grad()
         total_loss = actor_loss + critic_loss
