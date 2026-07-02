@@ -1,6 +1,10 @@
 # Bridging the Sim to Real Gap with Domain Randomization
 This repository contains the code for the Reinforcement Learning project in the MLDL course at PoliTO. \
-Students: Yegane Bagheri and Chiara Roberta Casale.
+The project is explained in more details inside the project report.
+
+### Contributors
+[Yegane Bagheri](https://github.com/yeganebagheri) \
+[Chiara Roberta Casale](https://github.com/chiararcasale/)
 
 ## REINFORCE
 - `agent_reinforce.py` Agent for REINFORCE without a baseline and REINFORCE with baseline = 20
